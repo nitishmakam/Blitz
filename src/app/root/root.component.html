@@ -1,9 +1,18 @@
 <div class="row">
   <div class="col s8">
     <img style="margin-top:10%" height="100%" width="100%" src="../../assets/blitzlogo.png">
+    <h6 class="col s6 offset-s3 indigo-text text-lighten-1">A place to remedy the worms in your brain</h6>
   </div>
-  <div class="col s4">
-    <div style="margin-top:50%" *ngIf="sign">
+  <div class="col s4" style="margin-top:12%">
+    <nav class="nav-extended col s11 cyan darken-4">
+      <div class="nav-content center">
+        <ul class="tabs tabs-transparent">
+          <li class="tab col s6"><a [ngClass]="sign?'active':''" (click)="signTrue()">SIGN IN</a></li>
+          <li class="tab col s6"><a [ngClass]="!sign?'active':''" (click)="signFalse()">SIGN UP</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div *ngIf="sign">
       <div class="input-field col s10">
         <input type="text" class="validate" [(ngModel)]="signin.username" />
         <label>Username</label>
@@ -15,18 +24,31 @@
           characters long</span>
       </div>
       <button [disabled]="signin.username==null || (signin.password==null?true:(signin.password.length<8?true:false))"
-        class="col s3 offset-s3 btn waves-effect waves-light" (click)="signIn()">Sign In</button>
-      <div class="col s12 helper-text">Not registered yet? Register <a id="click" (click)="switch()">here</a>.</div>
+        class="col s3 offset-s3 btn waves-effect waves-light cyan darken-4" (click)="signIn()">Sign In</button>
+      <!-- <div class="col s12 helper-text">Not registered yet? Register <a id="click" (click)="switch()">here</a>.</div> -->
     </div>
-    <div style="margin-top:40%" *ngIf="!sign">
+    <div *ngIf="!sign">
       <div class="input-field col s10">
         <input type="text" class="validate" (blur)="validateUsername()" [(ngModel)]="signup.username" name="username" #username="ngModel" />
         <label>Username</label>
         <span class="helper-text red-text" *ngIf="(signup.username==null?true:(signup.username.length==0)) && username.touched">Username cannot be
           empty</span>
-        <span class="helper-text red-text" *ngIf="usernameValidShow && !usernameValid">username is not available {{usernameValid}}</span>
+        <span class="helper-text red-text" *ngIf="usernameValidShow && !usernameValid">username is not available</span>
       </div>
-      <span *ngIf="usernameValidShow" class="col s2" style="margin-top:10%"><i class="material-icons" [innerHTML]="usernameValid?'check_circle':'error'"></i></span>
+      <span *ngIf="usernameValidShow" class="col s2" style="margin-top:7%">
+        <div *ngIf="showLoader" class="preloader-wrapper small active">
+          <div class="spinner-layer spinner-green-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <span *ngIf="!showLoader"><i class="material-icons" [innerHTML]="usernameValid?'check_circle':'error'"></i></span>
+      </span>
       <div class="input-field col s10">
         <input type="email" class="validate" name="emailid" #emailid="ngModel" [(ngModel)]="signup.email" email />
         <label>Email ID</label>
@@ -39,6 +61,6 @@
         <span class="helper-text red-text" *ngIf="pw.invalid && (pw.dirty || pw.touched)">Password must be atleast 8
           characters long</span>
       </div>
-      <button [disabled]="signup.email==null || (signup.password==null?true:(signup.password.length<8?true:false))" class="col s4 offset-s3 btn waves-effect waves-light" (click)="signUp()">Sign Up</button>
+      <button [disabled]="signup.email==null || (signup.password==null?true:(signup.password.length<8?true:false)) || !usernameValid" class="col s4 offset-s3 btn waves-effect waves-light cyan darken-4" (click)="signUp()">Sign Up</button>
     </div>
   </div>

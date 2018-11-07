@@ -1,1 +1,42 @@
-<img height="100%" width="100%" src="../../assets/blitzlogo.png">
+<div class="row">
+  <div class="col s8">
+    <img style="margin-top:10%" height="100%" width="100%" src="../../assets/blitzlogo.png">
+  </div>
+  <div class="col s4">
+    <div style="margin-top:30%" *ngIf="sign">
+      <div class="input-field col s10">
+        <input type="text" class="validate" [(ngModel)]="signin.username" />
+        <label>Username</label>
+      </div>
+      <div class="input-field col s10">
+        <label>Password</label>
+        <input type="password" class="validate" [(ngModel)]="signin.password" name="pw" #pw="ngModel" minlength="8" />
+        <span class="helper-text red-text" *ngIf="pw.invalid && (pw.dirty || pw.touched)">Password is atleast 8
+          characters long</span>
+      </div>
+      <button [disabled]="signin.username==null || (signin.password==null?true:(signin.password.length<8?true:false))"
+        class="col s3 offset-s3 btn waves-effect waves-light" (click)="signIn()">Sign In</button>
+      <div class="col s12 center pull-s2 helper-text">Not registered yet? Register <a id="click" (click)="switch()">here</a>.</div>
+    </div>
+    <div style="margin-top:30%" *ngIf="!sign">
+      <div class="input-field col s10">
+        <input type="text" class="validate" [(ngModel)]="signup.username" name="username" #username="ngModel" />
+        <label>Username</label>
+        <span class="helper-text red-text" *ngIf="(signup.username==null?true:(signup.username.length==0)) && username.touched">Username cannot be
+          empty</span>
+      </div>
+      <div class="input-field col s10">
+        <input type="email" class="validate" name="emailid" #emailid="ngModel" [(ngModel)]="signup.email" email />
+        <label>Email ID</label>
+        <span class="helper-text red-text" *ngIf="emailid.invalid && (emailid.dirty || emailid.touched)">Not a valid
+          Email Id</span>
+      </div>
+      <div class="input-field col s10">
+        <label>Password</label>
+        <input type="password" class="validate" [(ngModel)]="signup.password" name="pw" #pw="ngModel" minlength="8" />
+        <span class="helper-text red-text" *ngIf="pw.invalid && (pw.dirty || pw.touched)">Password must be atleast 8
+          characters long</span>
+      </div>
+      <button [disabled]="signup.email==null || (signup.password==null?true:(signup.password.length<8?true:false))" class="col s4 offset-s3 btn waves-effect waves-light" (click)="signUp()">Sign Up</button>
+    </div>
+  </div>

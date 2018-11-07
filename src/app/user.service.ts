@@ -12,9 +12,13 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   signIn(signInCredentials: SignInCredentials) {
-    this.http.post(endpoint.concat('/signIn'), signInCredentials).subscribe(() => { console.log('Hello'); });
+    return this.http.post(endpoint.concat('/users/signIn'), signInCredentials);
   }
   signUp(signUpCredentials: SignUpCredentials) {
-    this.http.post(endpoint.concat('/signUp'), signUpCredentials).subscribe(() => { console.log('hello'); });
+    return this.http.post(endpoint.concat('/users/signUp'), signUpCredentials);
+  }
+
+  validateUsername(username: string) {
+    return this.http.get(endpoint.concat(`/users/usernameValid/${username}`));
   }
 }

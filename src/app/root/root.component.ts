@@ -13,12 +13,16 @@ import { SignUpCredentials } from 'src/SignUpCredentials';
 export class RootComponent implements OnInit {
 
   private sign: boolean;
+  private usernameValid: boolean;
+  private usernameValidShow: boolean;
   private signin: SignInCredentials;
   private signup: SignUpCredentials;
   constructor(private router: Router, private userService: UserService) {
     this.sign = true;
     this.signin = new SignInCredentials();
     this.signup = new SignUpCredentials();
+    this.usernameValid = false;
+    this.usernameValidShow = false;
   }
 
   ngOnInit() {
@@ -34,5 +38,12 @@ export class RootComponent implements OnInit {
   signUp() {
     console.log(this.signup);
     this.userService.signUp(this.signup);
+  }
+  validateUsername() {
+    if (this.signup.username != null && this.signup.username.length !== 0) {
+      this.usernameValidShow = true;
+      this.userService.validateUsername(this.signup.username)
+        .subscribe(x => this.usernameValid = true, err => this.usernameValid = false);
+    }
   }
 }

@@ -17,7 +17,11 @@ export class RootComponent implements OnInit {
   private usernameValidShow: boolean;
   private signin: SignInCredentials;
   private signup: SignUpCredentials;
+  private errortext: string;
+  private showError: boolean;
   private showLoader: boolean;
+  private successtext: string;
+  private showSuccess: boolean;
   constructor(private router: Router, private userService: UserService) {
     this.sign = true;
     this.signin = new SignInCredentials();
@@ -25,26 +29,54 @@ export class RootComponent implements OnInit {
     this.usernameValid = false;
     this.usernameValidShow = false;
     this.showLoader = true;
+    this.showError = false;
+    this.showSuccess = false;
   }
 
   ngOnInit() {
   }
   signTrue() {
     this.sign = true;
+    this.showError = false;
+    this.showSuccess = false;
+    this.errortext = '';
+    this.successtext = '';
+
   }
   signFalse() {
     this.sign = false;
+    this.showError = false;
+    this.showSuccess = false;
+    this.errortext = '';
+    this.successtext = '';
   }
   signIn() {
-    console.log(this.signin);
-    this.userService.signIn(this.signin);
-  }
-  switch() {
-    this.sign = !this.sign;
+    this.showError = false;
+    this.userService.signIn(this.signin)
+      .subscribe(
+        x => {
+          localStorage.setItem('username', this.signin.username);
+          this.router.navigate(['/home']);
+        },
+        err => {
+          this.errortext = 'Incorrect username or password';
+          this.showError = true;
+        }
+      );
   }
   signUp() {
-    console.log(this.signup);
-    this.userService.signUp(this.signup);
+    this.showSuccess = false;
+    this.userService.signUp(this.signup)
+      .subscribe(
+        x => {
+          this.successtext = 'Account successfully created';
+          this.showSuccess = true;
+        },
+        err => {
+          this.errortext = 'Account could not be created. Please try again';
+          this.showError = true;
+        }
+      );
   }
   validateUsername() {
     this.showLoader = true;

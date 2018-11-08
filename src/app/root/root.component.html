@@ -25,14 +25,14 @@
       </div>
       <button [disabled]="signin.username==null || (signin.password==null?true:(signin.password.length<8?true:false))"
         class="col s3 offset-s3 btn waves-effect waves-light cyan darken-4" (click)="signIn()">Sign In</button>
-      <!-- <div class="col s12 helper-text">Not registered yet? Register <a id="click" (click)="switch()">here</a>.</div> -->
     </div>
     <div *ngIf="!sign">
       <div class="input-field col s10">
-        <input type="text" class="validate" (blur)="validateUsername()" [(ngModel)]="signup.username" name="username" #username="ngModel" />
+        <input type="text" class="validate" (blur)="validateUsername()" [(ngModel)]="signup.username" name="username"
+          #username="ngModel" />
         <label>Username</label>
-        <span class="helper-text red-text" *ngIf="(signup.username==null?true:(signup.username.length==0)) && username.touched">Username cannot be
-          empty</span>
+        <span class="helper-text red-text" *ngIf="(signup.username==null?true:(signup.username.length==0)) && username.touched">
+          Username cannot be empty</span>
         <span class="helper-text red-text" *ngIf="usernameValidShow && !usernameValid">username is not available</span>
       </div>
       <span *ngIf="usernameValidShow" class="col s2" style="margin-top:7%">
@@ -40,14 +40,17 @@
           <div class="spinner-layer spinner-green-only">
             <div class="circle-clipper left">
               <div class="circle"></div>
-            </div><div class="gap-patch">
+            </div>
+            <div class="gap-patch">
               <div class="circle"></div>
-            </div><div class="circle-clipper right">
+            </div>
+            <div class="circle-clipper right">
               <div class="circle"></div>
             </div>
           </div>
         </div>
-        <span *ngIf="!showLoader"><i class="material-icons" [innerHTML]="usernameValid?'check_circle':'error'"></i></span>
+        <span *ngIf="!showLoader"><i class="material-icons" [ngClass]="usernameValid?'green-text text-darken-4':'red-text text-darken-4'"
+            [innerHTML]="usernameValid?'check_circle':'error'"></i></span>
       </span>
       <div class="input-field col s10">
         <input type="email" class="validate" name="emailid" #emailid="ngModel" [(ngModel)]="signup.email" email />
@@ -61,6 +64,10 @@
         <span class="helper-text red-text" *ngIf="pw.invalid && (pw.dirty || pw.touched)">Password must be atleast 8
           characters long</span>
       </div>
-      <button [disabled]="signup.email==null || (signup.password==null?true:(signup.password.length<8?true:false)) || !usernameValid" class="col s4 offset-s3 btn waves-effect waves-light cyan darken-4" (click)="signUp()">Sign Up</button>
+      <button [disabled]="signup.email==null || (signup.password==null?true:(signup.password.length<8?true:false)) || !usernameValid"
+        class="col s4 offset-s3 btn waves-effect waves-light cyan darken-4" (click)="signUp()">Sign Up</button>
+    </div>
+    <div *ngIf="showError" class="col s10 center helper-text red-text text-darken-4 red lighten-3" [innerHTML]="errortext"></div>
+    <div *ngIf="showSuccess" class="col s10 center helper-text green text text-darken-4 green lighten-3" [innerHTML]="successtext">
     </div>
   </div>

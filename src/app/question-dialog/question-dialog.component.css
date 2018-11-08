@@ -1,0 +1,12 @@
+.modal{
+  height:380px;
+  width:500px;
+  z-index:11;
+  display: block;
+}
+textarea{
+  height:70%;
+}
+i:hover{
+  cursor: pointer;
+}

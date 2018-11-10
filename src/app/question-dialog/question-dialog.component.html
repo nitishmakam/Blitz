@@ -1,11 +1,14 @@
 <div class="modal">
-  <i class="material-icons red-text text-darken-4 right" (click)="close()">cancel</i>
-<div class="modal-content">
-  <h1 class="center indigo-text text-lighten-2">ASK AWAY!</h1>
-  <textarea rows=10 [(ngModel)]="question" placeholder="Type your worm here" cdkFocusInitial>
-  </textarea>
-</div>
-<div class="modal-footer right">
-  <button class="waves-effect waves-light btn" type="submit" (click)="ask()" (submit)="ask()">Publish</button>
-</div>
+  <i class="material-icons red-text text-darken-4 right" (click)="close()">close</i>
+  <div class="modal-content">
+    <h1 class="center indigo-text text-lighten-2">ASK AWAY!</h1>
+    <div class="input-field">
+      <i class="material-icons prefix">mode_edit</i>
+      <textarea class="materialize-textarea" [(ngModel)]="text" placeholder="Type your worm here" cdkFocusInitial>
+      </textarea>
+    </div>
+    <div class="modal-footer right">
+      <button class="waves-effect waves-light btn" type="submit" (click)="ask()" (submit)="ask()">Publish</button>
+    </div>
+  </div>
 </div>

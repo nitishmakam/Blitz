@@ -1,9 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
-import { SignInCredentials } from 'src/SignInCredentials';
-import { SignUpCredentials } from 'src/SignUpCredentials';
+import { MatProgressSpinnerModule } from '@angular/material';
 
+export interface SignInCredentials {
+  username: string;
+  password: string;
+}
+
+export interface SignUpCredentials {
+  username: string;
+  email: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -24,13 +33,13 @@ export class RootComponent implements OnInit {
   private showSuccess: boolean;
   constructor(private router: Router, private userService: UserService) {
     this.sign = true;
-    this.signin = new SignInCredentials();
-    this.signup = new SignUpCredentials();
     this.usernameValid = false;
     this.usernameValidShow = false;
-    this.showLoader = true;
+    this.showLoader = false;
     this.showError = false;
     this.showSuccess = false;
+    this.signup = <SignUpCredentials>{};
+    this.signin = <SignInCredentials>{};
   }
 
   ngOnInit() {
@@ -41,6 +50,9 @@ export class RootComponent implements OnInit {
     this.showSuccess = false;
     this.errortext = '';
     this.successtext = '';
+    this.signup = <SignUpCredentials>{};
+    this.signin = <SignInCredentials>{};
+    this.usernameValidShow = false;
 
   }
   signFalse() {
@@ -49,6 +61,9 @@ export class RootComponent implements OnInit {
     this.showSuccess = false;
     this.errortext = '';
     this.successtext = '';
+    this.signup = <SignUpCredentials>{};
+    this.signin = <SignInCredentials>{};
+    this.usernameValidShow = false;
   }
   signIn() {
     this.showError = false;
@@ -57,6 +72,7 @@ export class RootComponent implements OnInit {
         x => {
           localStorage.setItem('username', this.signin.username);
           this.router.navigate(['/home']);
+          console.log(x);
         },
         err => {
           this.errortext = 'Incorrect username or password';
@@ -69,8 +85,9 @@ export class RootComponent implements OnInit {
     this.userService.signUp(this.signup)
       .subscribe(
         x => {
-          this.successtext = 'Account successfully created';
+          this.successtext = 'Account successfully created.';
           this.showSuccess = true;
+          console.log(x);
         },
         err => {
           this.errortext = 'Account could not be created. Please try again';
@@ -79,20 +96,25 @@ export class RootComponent implements OnInit {
       );
   }
   validateUsername() {
-    this.showLoader = true;
-    if (this.signup.username != null && this.signup.username.length !== 0) {
-      this.userService.validateUsername(this.signup.username)
-        .subscribe(
-          x => {
-            this.usernameValid = true;
-            this.usernameValidShow = true;
-            this.showLoader = false;
-          },
-          err => {
-            this.usernameValid = false;
-            this.usernameValidShow = true;
-            this.showLoader = false;
-          });
+    if (this.signup.username != null && this.signup.username !== '') {
+      this.showLoader = true;
+      if (this.signup.username != null && this.signup.username.length !== 0) {
+        this.userService.validateUsername(this.signup.username)
+          .subscribe(
+            x => {
+              this.usernameValid = true;
+              this.usernameValidShow = true;
+              this.showLoader = false;
+            },
+            err => {
+              this.usernameValid = false;
+              this.usernameValidShow = true;
+              this.showLoader = false;
+            });
+      }
+    } else {
+      this.usernameValidShow = false;
+      this.showLoader = false;
     }
   }
 }

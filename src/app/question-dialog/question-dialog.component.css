@@ -1,11 +1,12 @@
 .modal{
-  height:380px;
-  width:500px;
-  z-index:11;
   display: block;
+  position: absolute;
+  top:20%;
+  left:1%;
+  background-color: #eeeeee;
 }
-textarea{
-  height:70%;
+.modal-footer{
+  background-color: #eeeeee;
 }
 i:hover{
   cursor: pointer;

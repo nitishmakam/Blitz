@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SignInCredentials } from 'src/SignInCredentials';
-import { SignUpCredentials } from 'src/SignUpCredentials';
+import { SignUpCredentials } from './root/root.component';
+import { SignInCredentials } from './root/root.component';
 
 declare let endpoint: any;
 @Injectable({

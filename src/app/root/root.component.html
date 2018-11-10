@@ -13,13 +13,15 @@
       </div>
     </nav>
     <div *ngIf="sign">
-      <div class="input-field col s10">
+      <div class="input-field col s11">
+        <i class="material-icons prefix">person</i>
         <input type="text" class="validate" [(ngModel)]="signin.username" />
         <label>Username</label>
       </div>
-      <div class="input-field col s10">
-        <label>Password</label>
+      <div class="input-field col s11">
+        <i class="material-icons prefix">vpn_key</i>
         <input type="password" class="validate" [(ngModel)]="signin.password" name="pw" #pw="ngModel" minlength="8" />
+        <label>Password</label>
         <span class="helper-text red-text" *ngIf="pw.invalid && (pw.dirty || pw.touched)">Password is atleast 8
           characters long</span>
       </div>
@@ -35,20 +37,11 @@
           Username cannot be empty</span>
         <span class="helper-text red-text" *ngIf="usernameValidShow && !usernameValid">username is not available</span>
       </div>
-      <span *ngIf="usernameValidShow" class="col s2" style="margin-top:7%">
-        <div *ngIf="showLoader" class="preloader-wrapper small active">
-          <div class="spinner-layer spinner-green-only">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-        </div>
+      <span class="col s2" *ngIf="showLoader" style="margin-top:6%">
+        <mat-progress-spinner  diameter=20 mode="indeterminate" color="warn">
+        </mat-progress-spinner>
+      </span>
+      <span *ngIf="usernameValidShow" class="col s2" style="margin-top:6%">
         <span *ngIf="!showLoader"><i class="material-icons" [ngClass]="usernameValid?'green-text text-darken-4':'red-text text-darken-4'"
             [innerHTML]="usernameValid?'check_circle':'error'"></i></span>
       </span>
@@ -71,3 +64,4 @@
     <div *ngIf="showSuccess" class="col s10 center helper-text green text text-darken-4 green lighten-3" [innerHTML]="successtext">
     </div>
   </div>
+</div>

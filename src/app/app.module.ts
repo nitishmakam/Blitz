@@ -12,7 +12,8 @@ import { HomeComponent } from './home/home.component';
 import { QuestionComponent } from './question/question.component';
 import { AnswerComponent } from './answer/answer.component';
 import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatSnackBarModule, MatProgressSpinnerModule } from '@angular/material';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MatDialogModule } from '@angular/material';
     HomeComponent,
     QuestionComponent,
     AnswerComponent,
-    QuestionDialogComponent
+    QuestionDialogComponent,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +31,14 @@ import { MatDialogModule } from '@angular/material';
     AppRoutingModule,
     FormsModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
-  entryComponents: [QuestionDialogComponent],
+  entryComponents: [
+    QuestionDialogComponent,
+    SnackbarComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

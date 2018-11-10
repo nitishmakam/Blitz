@@ -8,14 +8,14 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 })
 export class QuestionDialogComponent implements OnInit {
 
-  private question: string;
+  private text: string;
   constructor(public dialogRef: MatDialogRef<QuestionDialogComponent>) { }
 
   ngOnInit() {
   }
 
   ask() {
-    this.dialogRef.close(this.question);
+    this.dialogRef.close(this.text);
   }
 
   close() {

@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { QuestionComponent } from './question/question.component';
 import { AnswerComponent } from './answer/answer.component';
 import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
-import { MatDialogModule, MatSnackBarModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatDialogModule, MatSnackBarModule, MatProgressSpinnerModule, MatSidenavModule } from '@angular/material';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 
 @NgModule({
@@ -33,7 +33,8 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     MatDialogModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSidenavModule
   ],
   entryComponents: [
     QuestionDialogComponent,

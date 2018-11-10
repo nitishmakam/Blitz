@@ -31,6 +31,7 @@ export class RootComponent implements OnInit {
   private showLoader: boolean;
   private successtext: string;
   private showSuccess: boolean;
+  private showPassword: boolean;
   constructor(private router: Router, private userService: UserService) {
     this.sign = true;
     this.usernameValid = false;
@@ -38,11 +39,16 @@ export class RootComponent implements OnInit {
     this.showLoader = false;
     this.showError = false;
     this.showSuccess = false;
+    this.showPassword = false;
     this.signup = <SignUpCredentials>{};
     this.signin = <SignInCredentials>{};
   }
 
   ngOnInit() {
+    localStorage.clear();
+  }
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
   signTrue() {
     this.sign = true;
@@ -53,6 +59,7 @@ export class RootComponent implements OnInit {
     this.signup = <SignUpCredentials>{};
     this.signin = <SignInCredentials>{};
     this.usernameValidShow = false;
+    this.showPassword = false;
 
   }
   signFalse() {
@@ -64,6 +71,7 @@ export class RootComponent implements OnInit {
     this.signup = <SignUpCredentials>{};
     this.signin = <SignInCredentials>{};
     this.usernameValidShow = false;
+    this.showPassword = false;
   }
   signIn() {
     this.showError = false;
@@ -71,8 +79,8 @@ export class RootComponent implements OnInit {
       .subscribe(
         x => {
           localStorage.setItem('username', this.signin.username);
+          localStorage.setItem('token', x.toString());
           this.router.navigate(['/home']);
-          console.log(x);
         },
         err => {
           this.errortext = 'Incorrect username or password';

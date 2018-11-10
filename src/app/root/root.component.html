@@ -13,18 +13,19 @@
       </div>
     </nav>
     <div *ngIf="sign">
-      <div class="input-field col s11">
+      <div class="input-field col s10">
         <i class="material-icons prefix">person</i>
         <input type="text" class="validate" [(ngModel)]="signin.username" />
         <label>Username</label>
       </div>
-      <div class="input-field col s11">
+      <div class="input-field col s10">
         <i class="material-icons prefix">vpn_key</i>
-        <input type="password" class="validate" [(ngModel)]="signin.password" name="pw" #pw="ngModel" minlength="8" />
+        <input type="{{showPassword?'text':'password'}}" class="validate" [(ngModel)]="signin.password" name="pw" #pw="ngModel" minlength="8" />
         <label>Password</label>
         <span class="helper-text red-text" *ngIf="pw.invalid && (pw.dirty || pw.touched)">Password is atleast 8
           characters long</span>
       </div>
+      <div class="col s1" style="margin-top:6%;" (click)="toggleShowPassword()"><i class="material-icons" [innerHTML]="showPassword?'visibility':'visibility_off'"></i></div>
       <button [disabled]="signin.username==null || (signin.password==null?true:(signin.password.length<8?true:false))"
         class="col s3 offset-s3 btn waves-effect waves-light cyan darken-4" (click)="signIn()">Sign In</button>
     </div>
@@ -53,10 +54,11 @@
       </div>
       <div class="input-field col s10">
         <label>Password</label>
-        <input type="password" class="validate" [(ngModel)]="signup.password" name="pw" #pw="ngModel" minlength="8" />
+        <input type="{{showPassword?'text':'password'}}" class="validate" [(ngModel)]="signup.password" name="pw" #pw="ngModel" minlength="8" />
         <span class="helper-text red-text" *ngIf="pw.invalid && (pw.dirty || pw.touched)">Password must be atleast 8
           characters long</span>
       </div>
+      <div class="col s1" style="margin-top:6%" (click)="toggleShowPassword()"><i class="material-icons" [innerHTML]="showPassword?'visibility':'visibility_off'"></i></div>
       <button [disabled]="signup.email==null || (signup.password==null?true:(signup.password.length<8?true:false)) || !usernameValid"
         class="col s4 offset-s3 btn waves-effect waves-light cyan darken-4" (click)="signUp()">Sign Up</button>
     </div>

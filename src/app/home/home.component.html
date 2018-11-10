@@ -1,8 +1,25 @@
-<nav>
+<mat-drawer-container>
+<mat-drawer-content>
+  <nav>
   <div class="nav-wrapper teal">
-    <a style="height:100%;width:10%" class="brand-logo left"><img style="height:100%;width:100%" src="../assets/blitzlogo.png" /></a>
-    <ul class="right">
+    <a style="height:100%;width:10%" class="brand-logo center"><img style="height:100%;width:100%" src="../assets/blitzlogo.png" /></a>
+    <ul class="left">
+      <li>
+        <a class="left" (click)="snav.toggle()"><i class="material-icons">menu</i></a>
+      </li>
+    </ul>
+        <ul class="right">
       <li (click)="openDialog()"><a><i class="material-icons white-text" title="Ask a question">add_circle_outline</i></a></li>
     </ul>
   </div>
 </nav>
+</mat-drawer-content>
+
+  <mat-drawer class="sidenav" #snav mode="over">
+    <ul class="center"><li><h3 class="blue-text text-darken-2">Hi, {{username|titlecase}}!</h3></li></ul></mat-drawer>
+  <!-- <mat-drawer-content>
+    <div class="container">
+    Hello folks! testing out stuff
+    </div>
+  </mat-drawer-content> -->
+</mat-drawer-container>

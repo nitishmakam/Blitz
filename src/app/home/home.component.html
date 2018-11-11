@@ -1,25 +1,34 @@
 <mat-drawer-container>
-<mat-drawer-content>
-  <nav>
-  <div class="nav-wrapper teal">
-    <a style="height:100%;width:10%" class="brand-logo center"><img style="height:100%;width:100%" src="../assets/blitzlogo.png" /></a>
-    <ul class="left">
-      <li>
-        <a class="left" (click)="snav.toggle()"><i class="material-icons">menu</i></a>
-      </li>
-    </ul>
+  <mat-drawer-content>
+    <nav>
+      <div class="nav-wrapper teal">
+        <a style="height:100%;width:10%" class="brand-logo center"><img style="height:100%;width:100%" src="../assets/blitzlogo.png" /></a>
+        <ul class="left">
+          <li>
+            <a class="left" (click)="snav.toggle()"><i class="material-icons">menu</i></a>
+          </li>
+        </ul>
         <ul class="right">
-      <li (click)="openDialog()"><a><i class="material-icons white-text" title="Ask a question">add_circle_outline</i></a></li>
-    </ul>
-  </div>
-</nav>
-</mat-drawer-content>
+          <li (click)="openDialog()"><a><i class="material-icons white-text" title="Ask a question">add_circle_outline</i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </mat-drawer-content>
 
   <mat-drawer class="sidenav" #snav mode="over">
-    <ul class="center"><li><h3 class="blue-text text-darken-2">Hi, {{username|titlecase}}!</h3></li></ul></mat-drawer>
-  <!-- <mat-drawer-content>
-    <div class="container">
-    Hello folks! testing out stuff
+    <div class="user-view" style="height:40%;width:100%">
+      <div class="background">
+        <img style="height:100%;width:100%" src="../../assets/userbg.jpeg">
+      </div>
+      <a><img class="circle" src="{{endpoint}}/users/getImage/{{username}}"></a>
+      <a><span class="white-text name">{{username|titlecase}}</span></a>
+      <a><span class="white-text email">{{email}}</span></a>
     </div>
-  </mat-drawer-content> -->
+    <ul>
+      <li class="center">
+        <h4 class="blue-text text-darken-2">Hi, {{username|titlecase}}!</h4>
+      </li>
+      <li><div class="divider"></div></li>
+    </ul>
+  </mat-drawer>
 </mat-drawer-container>

@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SignUpCredentials } from './root/root.component';
 import { SignInCredentials } from './root/root.component';
+import { Injectable } from '@angular/core';
 
 declare let endpoint: any;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,5 +21,8 @@ export class UserService {
 
   validateUsername(username: string) {
     return this.http.get(endpoint.concat(`/users/usernameValid/${username}`));
+  }
+  upload(fd: FormData, username: string) {
+    this.http.post(endpoint.concat(`/users/uploadImage/${username}`), fd).subscribe();
   }
 }

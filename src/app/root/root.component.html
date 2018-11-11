@@ -20,7 +20,8 @@
       </div>
       <div class="input-field col s10">
         <i class="material-icons prefix">vpn_key</i>
-        <input type="{{showPassword?'text':'password'}}" class="validate" [(ngModel)]="signin.password" name="pw" #pw="ngModel" minlength="8" />
+        <input type="{{showPassword?'text':'password'}}" class="validate" [(ngModel)]="signin.password" name="pw" #pw="ngModel"
+          minlength="8" />
         <label>Password</label>
         <span class="helper-text red-text" *ngIf="pw.invalid && (pw.dirty || pw.touched)">Password is atleast 8
           characters long</span>
@@ -39,7 +40,7 @@
         <span class="helper-text red-text" *ngIf="usernameValidShow && !usernameValid">username is not available</span>
       </div>
       <span class="col s2" *ngIf="showLoader" style="margin-top:6%">
-        <mat-progress-spinner  diameter=20 mode="indeterminate" color="warn">
+        <mat-progress-spinner diameter=20 mode="indeterminate" color="warn">
         </mat-progress-spinner>
       </span>
       <span *ngIf="usernameValidShow" class="col s2" style="margin-top:6%">
@@ -54,11 +55,21 @@
       </div>
       <div class="input-field col s10">
         <label>Password</label>
-        <input type="{{showPassword?'text':'password'}}" class="validate" [(ngModel)]="signup.password" name="pw" #pw="ngModel" minlength="8" />
+        <input type="{{showPassword?'text':'password'}}" class="validate" [(ngModel)]="signup.password" name="pw" #pw="ngModel"
+          minlength="8" />
         <span class="helper-text red-text" *ngIf="pw.invalid && (pw.dirty || pw.touched)">Password must be atleast 8
           characters long</span>
       </div>
       <div class="col s1" style="margin-top:6%" (click)="toggleShowPassword()"><i class="material-icons" [innerHTML]="showPassword?'visibility':'visibility_off'"></i></div>
+      <div class="input-field file-field col s10">
+        <div class="btn">
+          <span>DP</span>
+          <input type="file" (change)="createFormData($event)">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
       <button [disabled]="signup.email==null || (signup.password==null?true:(signup.password.length<8?true:false)) || !usernameValid"
         class="col s4 offset-s3 btn waves-effect waves-light cyan darken-4" (click)="signUp()">Sign Up</button>
     </div>

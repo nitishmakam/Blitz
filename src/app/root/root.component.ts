@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { MatProgressSpinnerModule } from '@angular/material';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export interface SignInCredentials {
   username: string;
@@ -32,6 +33,8 @@ export class RootComponent implements OnInit {
   private successtext: string;
   private showSuccess: boolean;
   private showPassword: boolean;
+  private selectedFile: File;
+  private fd: FormData;
   constructor(private router: Router, private userService: UserService) {
     this.sign = true;
     this.usernameValid = false;
@@ -40,12 +43,22 @@ export class RootComponent implements OnInit {
     this.showError = false;
     this.showSuccess = false;
     this.showPassword = false;
+    this.fd = new FormData();
     this.signup = <SignUpCredentials>{};
     this.signin = <SignInCredentials>{};
   }
 
   ngOnInit() {
     localStorage.clear();
+  }
+
+  createFormData(event) {
+    this.selectedFile = <File>event.target.files[0];
+    this.fd.append('file', this.selectedFile, this.selectedFile.name);
+  }
+
+  uploadImage() {
+    this.userService.upload(this.fd, this.signup.username);
   }
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
@@ -79,12 +92,19 @@ export class RootComponent implements OnInit {
       .subscribe(
         x => {
           localStorage.setItem('username', this.signin.username);
-          localStorage.setItem('token', x.toString());
+          // console.log(x);
+          localStorage.setItem('token', x['token']);
+          localStorage.setItem('email', x['email']);
           this.router.navigate(['/home']);
         },
         err => {
-          this.errortext = 'Incorrect username or password';
-          this.showError = true;
+          if (err.status === 403) {
+            this.errortext = 'Incorrect username or password';
+            this.showError = true;
+          } else {
+            this.errortext = 'Could not connect to server';
+            this.showError = true;
+          }
         }
       );
   }
@@ -95,11 +115,19 @@ export class RootComponent implements OnInit {
         x => {
           this.successtext = 'Account successfully created.';
           this.showSuccess = true;
-          console.log(x);
+          if (this.selectedFile != null) {
+            this.uploadImage();
+          }
+          // console.log(x);
         },
         err => {
-          this.errortext = 'Account could not be created. Please try again';
-          this.showError = true;
+          if (err.status === 409) {
+            this.errortext = 'An account already exists with this email id.';
+            this.showError = true;
+          } else {
+            this.errortext = 'Account could not be created. Please try again';
+            this.showError = true;
+          }
         }
       );
   }

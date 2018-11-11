@@ -4,6 +4,8 @@ import { QuestionDialogComponent } from '../question-dialog/question-dialog.comp
 import { HomeService } from '../home.service';
 import { SnackbarComponent } from '../snackbar/snackbar.component';
 import { FormControl } from '@angular/forms';
+
+declare let endpoint: any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,13 +17,18 @@ export class HomeComponent implements OnInit {
   private showSideNav: boolean;
   private mode: FormControl;
   private username: string;
+  private email: string;
+  private endpoint: string;
   constructor(public dialog: MatDialog, public snackBar: MatSnackBar, private homeService: HomeService) {
     this.dialogOpened = false;
     this.showSideNav = false;
+    this.endpoint = endpoint;
   }
 
   ngOnInit() {
     this.username = localStorage.getItem('username');
+    this.email = localStorage.getItem('email');
+    console.log(endpoint);
   }
 
   openDialog() {
@@ -41,9 +48,9 @@ export class HomeComponent implements OnInit {
                 err => {
                   this.snackBar.openFromComponent(SnackbarComponent, {
                     duration: 3000,
-                    data: 'Question was published'
-                    // horizontalPosition: 'end',
-                    // verticalPosition: 'bottom'
+                    data: 'Question was published',
+                    horizontalPosition: 'center',
+                    verticalPosition: 'bottom'
                   });
                 });
           }

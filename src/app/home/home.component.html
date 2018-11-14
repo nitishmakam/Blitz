@@ -13,6 +13,12 @@
         </ul>
       </div>
     </nav>
+    <div class="container">
+      <mat-accordion class="example-headers-align">
+        <app-question *ngFor="let question of questions" [question]="question"></app-question>
+      </mat-accordion>
+      <!-- {{questions[0].answers[0].created|date:'d/m/yy hh:mm'}} -->
+    </div>
   </mat-drawer-content>
 
   <mat-drawer class="sidenav" #snav mode="over">
@@ -20,7 +26,7 @@
       <div class="background">
         <img style="height:100%;width:100%" src="../../assets/userbg.jpeg">
       </div>
-      <a><img class="circle" src="{{endpoint}}/users/getImage/{{username}}"></a>
+      <a><img class="circle" src="{{endpoint}}/users/img/{{username}}"></a>
       <a><span class="white-text name">{{username|titlecase}}</span></a>
       <a><span class="white-text email">{{email}}</span></a>
     </div>

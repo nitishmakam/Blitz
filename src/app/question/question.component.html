@@ -1,3 +1,18 @@
-<p>
-  question works!
-</p>
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <p class="flow-text">{{question.text}}</p>
+    </mat-panel-title>
+    <mat-panel-description>
+      {{question.user.username}} on {{question.created|date:'d/M/yy hh:mm'}}
+    </mat-panel-description>
+    <img src="{{endpoint}}/users/img/{{question.user.username}}" style="height:3%;width:3%" class="circle">
+  </mat-expansion-panel-header>
+  <mat-panel-description *ngIf="question.answers">
+    <app-answer *ngFor="let answer of question.answers" [answer]="answer">
+    </app-answer>
+  </mat-panel-description>
+  <mat-action-row>
+    <a class="col s2 green-text">Answer</a>
+  </mat-action-row>
+</mat-expansion-panel>

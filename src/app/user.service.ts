@@ -23,6 +23,6 @@ export class UserService {
     return this.http.get(endpoint.concat(`/users/usernameValid/${username}`));
   }
   upload(fd: FormData, username: string) {
-    this.http.post(endpoint.concat(`/users/uploadImage/${username}`), fd).subscribe();
+    this.http.post(endpoint.concat(`/users/img/${username}`), fd).subscribe();
   }
 }

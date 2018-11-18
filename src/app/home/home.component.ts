@@ -85,10 +85,21 @@ export class HomeComponent implements OnInit {
           if (text != null) {
             this.homeService.createQuestion(text)
               .subscribe(
-                err => {
+                x => {
                   this.snackBar.openFromComponent(SnackbarComponent, {
                     duration: 3000,
                     data: 'Question was published',
+                    horizontalPosition: 'center',
+                    verticalPosition: 'bottom'
+                  });
+                  const t = <Question>x;
+                  t.user = { username: localStorage.getItem('username') };
+                  this.questions.push(t);
+                },
+                err => {
+                  this.snackBar.openFromComponent(SnackbarComponent, {
+                    duration: 3000,
+                    data: 'Question could not be published',
                     horizontalPosition: 'center',
                     verticalPosition: 'bottom'
                   });

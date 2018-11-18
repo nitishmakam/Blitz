@@ -16,6 +16,8 @@ import {
   MatDialogModule, MatSnackBarModule, MatProgressSpinnerModule, MatSidenavModule, MatExpansionModule, MatIconModule
 } from '@angular/material';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AnswerDialogComponent } from './answer-dialog/answer-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     QuestionComponent,
     AnswerComponent,
     QuestionDialogComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    ProfileComponent,
+    AnswerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,8 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
   ],
   entryComponents: [
     QuestionDialogComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    AnswerDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,10 +9,12 @@
     <img src="{{endpoint}}/users/img/{{question.user.username}}" style="height:3%;width:3%" class="circle">
   </mat-expansion-panel-header>
   <mat-panel-description *ngIf="question.answers">
-    <app-answer *ngFor="let answer of question.answers" [answer]="answer">
+    <div class="row">
+    <app-answer *ngFor="let answer of question.answers | slice:0:3;" [answer]="answer">
     </app-answer>
+    </div>
   </mat-panel-description>
   <mat-action-row>
-    <a class="col s2 green-text">Answer</a>
+    <a id="clickable" class="col s2 green-text" (click)="openDialog()">Answer</a>
   </mat-action-row>
 </mat-expansion-panel>

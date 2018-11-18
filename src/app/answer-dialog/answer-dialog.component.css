@@ -1,0 +1,13 @@
+.modal{
+  display: block;
+  position: absolute;
+  top:20%;
+  left:1%;
+  background-color: #eeeeee;
+}
+.modal-footer{
+  background-color: #eeeeee;
+}
+i:hover{
+  cursor: pointer;
+}

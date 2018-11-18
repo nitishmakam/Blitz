@@ -1,0 +1,14 @@
+<div class="modal">
+  <i class="material-icons red-text text-darken-4 right" (click)="close()">close</i>
+  <div class="modal-content">
+    <h1 class="center indigo-text text-lighten-2">{{data}}</h1>
+    <div class="input-field">
+      <i class="material-icons prefix">mode_edit</i>
+      <textarea class="materialize-textarea" rows=10 [(ngModel)]="text" placeholder="Cure this worm here" cdkFocusInitial>
+      </textarea>
+    </div>
+    <div class="modal-footer right">
+      <button class="waves-effect waves-light btn" type="submit" (click)="answer()">Publish</button>
+    </div>
+  </div>
+</div>

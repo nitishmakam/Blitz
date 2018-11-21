@@ -2,11 +2,15 @@
   <div class="card">
     <div class="card-content grey-text text-darken-2">
       <div class="card-title">
-        {{answer.user.username}}
-        <span class="right"><img src="{{endpoint}}/users/img/{{answer.user.username}}" style="height:5%;width:5%" class="circle"></span>
+        {{answer.user.username|titlecase}}
+        <!-- <span class="right"><img src="{{endpoint}}/users/img/{{answer.user.username}}" style="height:5%;width:5%" class="circle"></span> -->
       </div>
       <h5>{{answer.text}}</h5>
       <div class="card-action">
+          <div class="col s4">
+            <i (click)="upvote()" [ngClass]="upvoted?'blue-text':'red-text'" class="material-icons">thumb_up</i>
+          {{answer.upvotes}}
+          </div>
           {{answer.created|date:'d/MM/yy hh:mm'}}
       </div>
     </div>

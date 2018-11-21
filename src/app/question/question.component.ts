@@ -13,17 +13,34 @@ declare let endpoint: any;
 export class QuestionComponent implements OnInit {
   @Input() question: Question;
   private endpoint: string;
+  private upvoted: boolean;
   private dialogOpened: boolean;
   constructor(public dialog: MatDialog,
     private answerService: AnswerService,
     private snackBar: MatSnackBar) {
     this.endpoint = endpoint;
     this.dialogOpened = false;
+    this.upvoted = false;
   }
 
   ngOnInit() {
-    // this.question = <Question>{};
-    // this.question.user = <User>{};
+    this.answerService.upvoteQuestionStatus(this.question._id)
+      .subscribe(x => {
+        if (x === 'False') {
+          this.upvoted = false;
+        } else {
+          this.upvoted = true;
+        }
+      });
+  }
+  upvote() {
+    if (!this.upvoted) {
+      this.answerService.upvoteQuestion(this.question._id)
+        .subscribe(x => {
+          this.question.upvotes++;
+          this.upvoted = true;
+        });
+    }
   }
   openDialog() {
     if (!this.dialogOpened) {

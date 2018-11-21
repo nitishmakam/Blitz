@@ -19,6 +19,7 @@ export interface Answer {
   text: String;
   created: Date;
   user: User;
+  upvotes: number;
 }
 export interface Question {
   _id: String;
@@ -26,6 +27,7 @@ export interface Question {
   user: User;
   created: Date;
   answers: Answer[];
+  upvotes: number;
 }
 @Component({
   selector: 'app-home',

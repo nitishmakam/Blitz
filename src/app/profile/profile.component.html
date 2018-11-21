@@ -1,3 +1,47 @@
-<p>
-  profile works!
-</p>
+<mat-drawer-container>
+  <mat-drawer-content>
+    <nav>
+      <div class="nav-wrapper teal">
+        <a routerLink="/home" style="height:100%;width:10%" class="brand-logo center"><img style="height:100%;width:100%"
+            src="../assets/blitzlogo.png" /></a>
+        <ul class="left">
+          <li>
+            <a class="left" (click)="snav.toggle()"><i class="material-icons">menu</i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <mat-accordion class="example-headers-align">
+        <img src="{{endpoint}}/users/img/{{username}}" class="circle center" style="height:10%;width:10%">
+        <h6>Questions asked</h6>
+        <app-question *ngFor="let question of questions" [question]="question"></app-question>
+        <h6>Questions answered</h6>
+        <app-question *ngFor="let question of questionsAnswered" [question]="question"></app-question>
+      </mat-accordion>
+      <!-- {{questions[0].answers[0].created|date:'d/m/yy hh:mm'}} -->
+    </div>
+  </mat-drawer-content>
+
+  <mat-drawer class="sidenav" #snav mode="over">
+    <div class="user-view" style="height:40%;width:100%">
+      <div class="background">
+        <img style="height:100%;width:100%" src="../../assets/userbg.jpeg">
+      </div>
+      <a><img class="circle" src="{{endpoint}}/users/img/{{username}}"></a>
+      <a><span class="white-text name">{{username|titlecase}}</span></a>
+      <a><span class="white-text email">{{email}}</span></a>
+    </div>
+    <ul>
+      <li class="center">
+        <h4 class="blue-text text-darken-2">Hi, {{username|titlecase}}!</h4>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a routerLink="/"><i class="material-icons">arrow_back</i>Logout</a>
+      </li>
+    </ul>
+  </mat-drawer>
+</mat-drawer-container>

@@ -46,6 +46,9 @@ export class QuestionComponent implements OnInit {
                   });
                 const t = <Answer>x;
                 t.user = { username: localStorage.getItem('username') };
+                if (this.question.answers == null) {
+                  this.question.answers = [];
+                }
                 this.question.answers.push(t);
               }, err => {
                 this.snackBar.openFromComponent(SnackbarComponent,

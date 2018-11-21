@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
 declare let endpoint: any;
-
 @Injectable({
   providedIn: 'root'
 })
-export class AnswerService {
+export class ProfileService {
   private headers: HttpHeaders;
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
@@ -15,8 +13,10 @@ export class AnswerService {
     });
   }
 
-  createAnswer(text: String, qid: String) {
-    const obj = { qid, text };
-    return this.http.post(endpoint.concat('/questions/createAnswer'), obj, { headers: this.headers });
+  getQuestions() {
+    return this.http.get(endpoint.concat(`/questions/questionsBy/${localStorage.getItem('username')}`), { headers: this.headers });
+  }
+  getAnswers() {
+    return this.http.get(endpoint.concat(`/questions/answersBy/${localStorage.getItem('username')}`), { headers: this.headers });
   }
 }

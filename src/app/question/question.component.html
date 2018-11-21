@@ -10,11 +10,15 @@
   </mat-expansion-panel-header>
   <mat-panel-description *ngIf="question.answers">
     <div class="row">
-    <app-answer *ngFor="let answer of question.answers | slice:0:3;" [answer]="answer">
-    </app-answer>
+      <app-answer *ngFor="let answer of question.answers" [answer]="answer">
+      </app-answer>
     </div>
   </mat-panel-description>
   <mat-action-row>
+    <div class="left-align">
+    <i class="material-icons">thumb_up</i>
+    {{question.upvotes}}
+    </div>
     <a id="clickable" class="col s2 green-text" (click)="openDialog()">Answer</a>
   </mat-action-row>
 </mat-expansion-panel>

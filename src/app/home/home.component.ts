@@ -6,6 +6,7 @@ import { SnackbarComponent } from '../snackbar/snackbar.component';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 declare let endpoint: any;
 
@@ -40,7 +41,8 @@ export class HomeComponent implements OnInit {
   private email: string;
   private endpoint: string;
   private questions: Question[];
-  constructor(public dialog: MatDialog, public snackBar: MatSnackBar, private homeService: HomeService) {
+  constructor(public dialog: MatDialog, public snackBar: MatSnackBar,
+    private homeService: HomeService, private router: Router) {
     this.dialogOpened = false;
     this.showSideNav = false;
     this.endpoint = endpoint;
@@ -52,7 +54,7 @@ export class HomeComponent implements OnInit {
     this.email = localStorage.getItem('email');
     this.homeService.getQuestions().subscribe(data => {
       this.questions = data as Question[];
-      console.log(this.questions);
+      // console.log(this.questions);
     });
     // console.log(data); });
     // console.log(this.questions);
@@ -70,7 +72,6 @@ export class HomeComponent implements OnInit {
     //     });
     //   });
   }
-
   openDialog() {
 
     if (!this.dialogOpened) {

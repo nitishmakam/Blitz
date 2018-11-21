@@ -3,12 +3,12 @@
     <div class="card-content grey-text text-darken-2">
       <div class="card-title">
         {{answer.user.username}}
-        <span class="right"><img src="{{endpoint}}/users/img/{{answer.user.username}}" class="circle"></span>
+        <span class="right"><img src="{{endpoint}}/users/img/{{answer.user.username}}" style="height:5%;width:5%" class="circle"></span>
       </div>
       <h5>{{answer.text}}</h5>
-      <!-- <div class="card-action"> -->
-      {{answer.created|date:'d/MM/yy hh:mm'}}
-      <!-- </div> -->
+      <div class="card-action">
+          {{answer.created|date:'d/MM/yy hh:mm'}}
+      </div>
     </div>
   </div>
 </div>

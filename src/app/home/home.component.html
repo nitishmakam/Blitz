@@ -26,7 +26,7 @@
       <div class="background">
         <img style="height:100%;width:100%" src="../../assets/userbg.jpeg">
       </div>
-      <a><img class="circle" src="{{endpoint}}/users/img/{{username}}"></a>
+      <a routerLink="/profile"><img class="circle" src="{{endpoint}}/users/img/{{username}}"></a>
       <a><span class="white-text name">{{username|titlecase}}</span></a>
       <a><span class="white-text email">{{email}}</span></a>
     </div>
@@ -34,7 +34,15 @@
       <li class="center">
         <h4 class="blue-text text-darken-2">Hi, {{username|titlecase}}!</h4>
       </li>
-      <li><div class="divider"></div></li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a routerLink="/profile">My Profile</a>
+      </li>
+      <li>
+        <a routerLink="/"><i class="material-icons">arrow_back</i>Logout</a>
+      </li>
     </ul>
   </mat-drawer>
 </mat-drawer-container>

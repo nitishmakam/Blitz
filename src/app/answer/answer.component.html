@@ -1,18 +1,20 @@
-<div class="col s12">
-  <div class="card">
-    <div class="card-content grey-text text-darken-2">
-      <div class="card-title">
-        {{answer.user.username|titlecase}}
-        <!-- <span class="right"><img src="{{endpoint}}/users/img/{{answer.user.username}}" style="height:5%;width:5%" class="circle"></span> -->
+<!-- <div class="col s12"> -->
+<div class="card col s12">
+  <div class="card-content grey-text text-darken-2">
+    <div class="card-title">
+      {{answer.user.username|titlecase}}
+      <!-- <span class="right"><img src="{{endpoint}}/users/img/{{answer.user.username}}" style="height:5%;width:5%" class="circle"></span> -->
+    </div>
+    <h5>{{answer.text}}</h5>
+    <div class="card-action">
+      <div class="col s4">
+        <div class="chip grey lighten-2">
+        <i matTooltip="Click to upvote" (click)="upvote()" [ngClass]="upvoted?'blue-text':'red-text'" class="material-icons">thumb_up</i>{{answer.upvotes}}
       </div>
-      <h5>{{answer.text}}</h5>
-      <div class="card-action">
-          <div class="col s4">
-            <i (click)="upvote()" [ngClass]="upvoted?'blue-text':'red-text'" class="material-icons">thumb_up</i>
-          {{answer.upvotes}}
-          </div>
-          {{answer.created|date:'d/MM/yy hh:mm'}}
       </div>
+      {{answer.created|date:'d/MM/yy HH:mm'}}
     </div>
   </div>
 </div>
+
+<!-- </div> -->

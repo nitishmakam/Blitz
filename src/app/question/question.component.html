@@ -1,24 +1,25 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
     <mat-panel-title>
-      <p class="flow-text">{{question.text}}</p>
+      <!-- <p class="flow-text"></p> -->
+      <span class="flow-text">{{question.text}}</span>
     </mat-panel-title>
     <mat-panel-description>
-      {{question.user.username}} on {{question.created|date:'d/M/yy hh:mm'}}
+      {{question.user.username}} on {{question.created|date:'d/M/yy HH:mm'}}
     </mat-panel-description>
     <img src="{{endpoint}}/users/img/{{question.user.username}}" style="height:3%;width:3%" class="circle">
   </mat-expansion-panel-header>
   <mat-panel-description *ngIf="question.answers">
-    <div class="row">
-      <app-answer *ngFor="let answer of question.answers" [answer]="answer" [qid]="question._id">
+    <div class="row" style="width: 100%">
+      <app-answer class="col s12" *ngFor="let answer of question.answers" [answer]="answer" [qid]="question._id">
       </app-answer>
     </div>
   </mat-panel-description>
   <mat-action-row>
     <div class="left-align">
-    <i (click)="upvote()" [ngClass]="upvoted?'blue-text':'red-text'" class="material-icons">thumb_up</i>
-    {{question.upvotes}}
+    <span class="chip left">
+      <i matTooltip="Click to upvote" (click)="upvote()" [ngClass]="upvoted?'blue-text':'red-text'" class="material-icons">thumb_up</i>{{question.upvotes}}</span>
     </div>
-    <a id="clickable" class="col s2 green-text" (click)="openDialog()">Answer</a>
+    <button id="clickable" class="btn waves-effect waves-light" (click)="openDialog()">Answer</button>
   </mat-action-row>
 </mat-expansion-panel>

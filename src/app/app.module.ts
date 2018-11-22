@@ -13,7 +13,7 @@ import { QuestionComponent } from './question/question.component';
 import { AnswerComponent } from './answer/answer.component';
 import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
 import {
-  MatDialogModule, MatSnackBarModule, MatProgressSpinnerModule, MatSidenavModule, MatExpansionModule, MatIconModule
+  MatDialogModule, MatSnackBarModule, MatProgressSpinnerModule, MatSidenavModule, MatExpansionModule, MatIconModule, MatTooltipModule
 } from '@angular/material';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -42,7 +42,8 @@ import { AnswerDialogComponent } from './answer-dialog/answer-dialog.component';
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   entryComponents: [
     QuestionDialogComponent,

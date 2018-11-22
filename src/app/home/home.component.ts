@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit {
                 x => {
                   this.snackBar.openFromComponent(SnackbarComponent, {
                     duration: 3000,
-                    data: 'Question was published',
+                    data: 'Question was successfully published',
                     horizontalPosition: 'center',
                     verticalPosition: 'bottom'
                   });

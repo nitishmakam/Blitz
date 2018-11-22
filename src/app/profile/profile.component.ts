@@ -13,6 +13,7 @@ declare let endpoint: any;
 export class ProfileComponent implements OnInit {
   private endpoint: string;
   private username: string;
+  private email: string;
   private questions: Question[];
   private questionsAnswered: Question[];
   constructor(private profileService: ProfileService, private snackBar: MatSnackBar) { }
@@ -20,6 +21,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.endpoint = endpoint;
     this.username = localStorage.getItem('username');
+    this.email = localStorage.getItem('email');
     this.profileService.getQuestions()
       .subscribe(x => {
         this.questions = x as Question[];

@@ -9,15 +9,17 @@
           </li>
         </ul>
         <ul class="right">
-          <li (click)="openDialog()"><a><i class="material-icons white-text" title="Ask a question">add_circle_outline</i></a></li>
+          <li (click)="openDialog()"><a><i class="material-icons white-text" matTooltip="Ask a question">add_circle_outline</i></a></li>
         </ul>
       </div>
     </nav>
     <div class="container">
-      <mat-accordion class="example-headers-align">
-        <app-question *ngFor="let question of questions" [question]="question"></app-question>
-      </mat-accordion>
-      <!-- {{questions[0].answers[0].created|date:'d/m/yy hh:mm'}} -->
+      <div class="row">
+        <mat-accordion class="example-headers-align">
+          <app-question *ngFor="let question of questions" [question]="question"></app-question>
+        </mat-accordion>
+        <!-- {{questions[0].answers[0].created|date:'d/m/yy hh:mm'}} -->
+      </div>
     </div>
   </mat-drawer-content>
 

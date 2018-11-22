@@ -50,6 +50,9 @@ export class RootComponent implements OnInit {
 
   ngOnInit() {
     localStorage.clear();
+    console.log(localStorage.length);
+    console.log(localStorage.getItem('username'));
+    console.log(localStorage.getItem('token'));
   }
 
   createFormData(event) {

@@ -5,6 +5,3 @@ mat-panel-description {
 mat-panel-title{
   overflow:visible;
 }
-#clickable:hover{
-  cursor: pointer;
-}

@@ -14,9 +14,17 @@
     <div class="container">
       <mat-accordion class="example-headers-align">
         <img src="{{endpoint}}/users/img/{{username}}" class="circle center" style="height:10%;width:10%">
-        <h6>Questions asked</h6>
+        <ul class="collection center col s4">
+          <li class="collection-item">
+            Username : {{username|titlecase}}
+          </li>
+          <li class="collection-item">
+            Email : {{email}}
+          </li>
+        </ul>
+        <h6>Questions asked : {{questions.length}}</h6>
         <app-question *ngFor="let question of questions" [question]="question"></app-question>
-        <h6>Questions answered</h6>
+        <h6>Questions answered : {{questionsAnswered.length}}</h6>
         <app-question *ngFor="let question of questionsAnswered" [question]="question"></app-question>
       </mat-accordion>
       <!-- {{questions[0].answers[0].created|date:'d/m/yy hh:mm'}} -->
@@ -40,8 +48,12 @@
         <div class="divider"></div>
       </li>
       <li>
+        <a routerLink="/home">Feed</a>
+      </li>
+      <li>
         <a routerLink="/"><i class="material-icons">arrow_back</i>Logout</a>
       </li>
+
     </ul>
   </mat-drawer>
 </mat-drawer-container>

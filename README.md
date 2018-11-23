@@ -1,4 +1,5 @@
 # Blitz
+This repository contains the client side code of a Question & Answer forum titled Blitz. It was built using Angular.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.
 

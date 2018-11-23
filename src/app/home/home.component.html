@@ -14,6 +14,7 @@
       </div>
     </nav>
     <div class="container">
+      <h3>Feed</h3>
       <div class="row">
         <mat-accordion class="example-headers-align">
           <app-question *ngFor="let question of questions" [question]="question"></app-question>
@@ -43,7 +44,7 @@
         <a routerLink="/profile">My Profile</a>
       </li>
       <li>
-        <a routerLink="/"><i class="material-icons">arrow_back</i>Logout</a>
+        <a (click)="logout()"><i class="material-icons">arrow_back</i>Logout</a>
       </li>
     </ul>
   </mat-drawer>

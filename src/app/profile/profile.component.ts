@@ -49,5 +49,7 @@ export class ProfileComponent implements OnInit {
             });
         });
   }
-
+  logout() {
+    window.location.replace('/');
+  }
 }

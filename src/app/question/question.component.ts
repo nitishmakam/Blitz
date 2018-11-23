@@ -67,14 +67,24 @@ export class QuestionComponent implements OnInit {
                   this.question.answers = [];
                 }
                 this.question.answers.push(t);
-              }, err => {
-                this.snackBar.openFromComponent(SnackbarComponent,
-                  {
-                    duration: 3000,
-                    data: 'Answer could not be posted',
-                    horizontalPosition: 'center',
-                    verticalPosition: 'bottom'
-                  });
+              }, (err: any) => {
+                if (err.error.text === 'spam') {
+                  this.snackBar.openFromComponent(SnackbarComponent,
+                    {
+                      duration: 3000,
+                      data: 'Answer marked as spam',
+                      horizontalPosition: 'center',
+                      verticalPosition: 'bottom'
+                    });
+                } else {
+                  this.snackBar.openFromComponent(SnackbarComponent,
+                    {
+                      duration: 3000,
+                      data: 'Answer could not be posted',
+                      horizontalPosition: 'center',
+                      verticalPosition: 'bottom'
+                    });
+                }
               });
           }
         });

@@ -111,4 +111,7 @@ export class HomeComponent implements OnInit {
         });
     }
   }
+  logout() {
+    window.location.replace('/');
+  }
 }
